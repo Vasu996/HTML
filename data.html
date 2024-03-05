@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width,initial-scale=1.0">
+<!--Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<!-- Elements to attach the event -->
+<button class="event-button" data-info="Button 1">Click me </button>
+<button class ="event-button "data -info="Button 2">Click me too</button>
+ <script>
+ $(document).ready(function () {
+$(".event-button").on("click",function(event) {
+var buttonInfo = $(this).data("info");
+
+document.write("Data passed with on() method:"+buttonInfo);
+}};
+</script>
+</body>
+</html>

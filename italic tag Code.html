@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrap Text Nodes with Italic Tag</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<!-- Paragraph element with text nodes -->
+<p id="targetParagraph">
+    This is some <span>sample</span> text with <strong>different</strong> formatting.
+</p>
+
+<script>
+    // Wait for the document to be ready
+    $(document).ready(function () {
+        // Find the target paragraph
+        var targetParagraph = $("#targetParagraph");
+
+        // Iterate through each node inside the paragraph
+        targetParagraph.contents().each(function () {
+            // Check if the node is a text node
+            if (this.nodeType === 3) {
+                // Wrap the text node with an italic tag
+                $(this).wrap("<i></i>");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

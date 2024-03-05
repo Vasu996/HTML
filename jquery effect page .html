@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Effect in Page</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Add some styling to the button and hidden div */
+        #toggleButton {
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #hiddenDiv {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Button to trigger the effect -->
+<div id="toggleButton">Toggle Slide Down</div>
+
+<!-- Hidden div that will slide down when the button is clicked -->
+<div id="hiddenDiv">
+    This is a hidden div that will slide down when the button is clicked!
+</div>
+
+<script>
+    // Wait for the document to be ready
+    $(document).ready(function () {
+        // Use jQuery to select the button and attach a click event
+        $("#toggleButton").click(function () {
+            // Use the slideDown effect on the hidden div
+            $("#hiddenDiv").slideDown();
+        });
+    });
+</script>
+
+</body>
+</html>

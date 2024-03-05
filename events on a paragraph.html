@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Event Time Difference with jQuery</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Paragraph element for click events -->
+<p id="clickParagraph">Click anywhere on this paragraph.</p>
+
+<!-- Output element to display time difference -->
+<div id="output">Time Difference: N/A</div>
+
+<script>
+    // Variables to store timestamps
+    var firstClickTime = 0;
+    var secondClickTime = 0;
+
+    // Wait for the document to be ready
+    $(document).ready(function () {
+        // Attach click event using on() method
+        $("#clickParagraph").on("click", function (event) {
+            // Capture the timestamp of the first click
+            if (firstClickTime === 0) {
+                firstClickTime = new Date().getTime();
+            } else {
+                // Capture the timestamp of the second click
+                secondClickTime = new Date().getTime();
+
+                // Calculate the time difference in milliseconds
+                var timeDifference = secondClickTime - firstClickTime;
+
+                // Update the output element with the time difference
+                $("#output").text("Time Difference: " + timeDifference + " milliseconds");
+
+                // Reset the timestamps for the next pair of clicks
+                firstClickTime = 0;
+                secondClickTime = 0;
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
