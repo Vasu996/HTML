@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Table Generator</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Dynamic Table Generator</h2>
+
+<button onclick="generateTable()">Generate Table</button>
+
+<div id="tableContainer"></div>
+
+<script>
+  
+  function generateTable() {
+        var xhr = new XMLHttpRequest();
+
+        var url = 'https://jsonplaceholder.typicode.com/photos';
+
+        xhr.open('GET', url, true);
+
+        xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+
+              var tableHTML = '<table><thead><tr><th>ID</th><th>Title</th><th>Thumbnail</th></tr></thead><tbody>';
+        for (var i = 0; i < response.length; i++) {
+          tableHTML += '<tr>';
+          tableHTML += '<td>' + response[i].id + '</td>';
+          tableHTML += '<td>' + response[i].title + '</td>';
+          tableHTML += '<td><img src="' + response[i].thumbnailUrl + '" alt="Thumbnail"></td>';
+          tableHTML += '</tr>';
+        }
+        tableHTML += '</tbody></table>';
+
+               var tableContainer = document.getElementById('tableContainer');
+        tableContainer.innerHTML = tableHTML;
+      }
+    };
+
+       xhr.send();
+  }
+</script>
+
+</body>
+</html>

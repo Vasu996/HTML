@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax Web Service Example</title>
+  <style>
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Posts from JSONPlaceholder</h2>
+
+<ul id="postList"></ul>
+
+<script>
+  
+  function getPosts() {
+       var xhr = new XMLHttpRequest();
+
+       var url = 'https://jsonplaceholder.typicode.com/posts';
+
+        xhr.open('GET', url, true);
+
+        xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+               var posts = JSON.parse(xhr.responseText);
+
+                displayPosts(posts);
+      }
+    };
+
+        xhr.send();
+  }
+
+  
+  function displayPosts(posts) {
+        var postList = document.getElementById('postList');
+
+      postList.innerHTML = '';
+
+    posts.forEach(function(post) {
+      var li = document.createElement('li');
+      li.innerHTML = '<strong>Title:</strong> ' + post.title + '<br>' +
+                     '<strong>Body:</strong> ' + post.body;
+      postList.appendChild(li);
+    });
+  }
+
+    getPosts();
+</script>
+
+</body>
+</html>
